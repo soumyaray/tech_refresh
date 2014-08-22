@@ -10,7 +10,7 @@ describe 'the page loads' do
   end
 
   after do
-    b.close
+    # b.close
   end
 
   it 'has the correct fields' do
