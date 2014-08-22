@@ -9,10 +9,6 @@ describe 'the page loads' do
     b.goto 'bit.ly/watir-webdriver-demo'
   end
 
-  after do
-    # b.close
-  end
-
   it 'has the correct fields' do
     tex = b.text_field(id: 'entry_0')
     tex.text.must_equal ''
