@@ -61,6 +61,13 @@ describe 'the page loads' do
   # end
 
   it 'no result' do
+
+    # set language to Chinese
+    dwnLang = b.span(id: 'dwnLang')
+    dwnLang.click
+    chinese = b.li(text: '繁體中文')
+    chinese.click
+
     startDate = b.input(id: 'StartDate')
     startDate.click
 
@@ -92,7 +99,7 @@ describe 'the page loads' do
     #change budget
     budgetAmount = b.span(id:'selBudgetAmount')
     budgetAmount.click
-    selectBudget = b.li(text:'Up to 10,000')
+    selectBudget = b.li(text:'最高 10,000')
     selectBudget.click
 
     searchBtn = b.input(id: 'btnSearch')
