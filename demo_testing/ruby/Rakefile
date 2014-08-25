@@ -1,7 +1,11 @@
 require 'rake/testtask'
 
-task :default => [:usetest]
+task :default => [:farego_test]
 
 Rake::TestTask.new(name=:usetest) do |t|
-  t.pattern = "spec/*farego_test.rb"
+  t.pattern = "spec/demo_watir_use_test.rb"
+end
+
+Rake::TestTask.new(name=:farego_test) do |t|
+  t.pattern = "spec/farego_test.rb"
 end

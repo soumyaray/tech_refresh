@@ -1,128 +1,115 @@
 require 'watir-webdriver'
 require 'minitest/autorun'
 require 'minitest/rg'
-# require 'selenium/server'
-#
-# jar_path = File.join(Dir.pwd, 'selenium-server-standalone-2.42.2.jar')
-# server = Selenium::Server.new(jar_path, :background => true)
-# server.start
-
-b = Watir::Browser.new :chrome
 
 describe 'the page loads' do
   before do
-    b.goto 'http://farego.com.tw'
+    @b = Watir::Browser.new :chrome
+    @b.goto 'http://farego.com.tw'
   end
 
-  after do
-    # b.close
-  end
+  # after do
+  #   @b.close
+  # end
 
   # it 'has the correct fields' do
-  # 	depCity = b.span(id: 'selDepartureCity')
+  #   # set language to Chinese
+  #   dwnLang = @b.span(id: 'dwnLang')
+  #   dwnLang.click
+  #
+  #   chinese = @b.li(text: '繁體中文')
+  #   chinese.click
+  # 	depCity = @b.span(id: 'selDepartureCity')
   #   depCity.text.must_equal '台北'
-  # 	arrCity = b.span(class: 'sel-tree fixed-w')
+  # 	arrCity = @b.span(class: 'sel-tree fixed-w')
   #   arrCity.text.must_equal '不限定'
-  #   searchBtn = b.input(id: 'btnSearch')
+  #   searchBtn = @b.input(id: 'btnSearch')
   #   searchBtn.value.must_equal '搜 尋'
-  #   selday = b.span(id: 'selStay')
+  #   selday = @b.span(id: 'selStay')
   #   selday.text.must_equal '2'
   # end
 
-  # it 'quick search' do
-  #   selday = b.span(id: 'selStay')
+  # it 'has quick search results' do
+  #   selday = @b.span(id: 'selStay')
   #   selday.click
-  #   day6 = b.li(text:'6')
+  #   day6 = @b.li(text:'6')
   #   day6.click
   #   selday.text.must_equal '6'
 
-  #   startDate = b.input(id: 'StartDate')
+  #   startDate = @b.input(id: 'StartDate')
   #   startDate.click
 
-  #   nextMonthBtn = b.a(class: 'ui-datepicker-next ui-corner-all')
+  #   nextMonthBtn = @b.a(class: 'ui-datepicker-next ui-corner-all')
   #   nextMonthBtn.click
 
-  #   firstDate = b.a(class: 'ui-state-default')
+  #   firstDate = @b.a(class: 'ui-state-default')
   #   firstDate.click
 
-  #   endDate = b.input(id: 'EndDate')
+  #   endDate = @b.input(id: 'EndDate')
   #   endDate.click
 
-  #   nextMonthBtn = b.a(class: 'ui-datepicker-next ui-corner-all')
+  #   nextMonthBtn = @b.a(class: 'ui-datepicker-next ui-corner-all')
   #   nextMonthBtn.click
-  #   nextMonthBtn = b.a(class: 'ui-datepicker-next ui-corner-all')
+  #   nextMonthBtn = @b.a(class: 'ui-datepicker-next ui-corner-all')
   #   nextMonthBtn.click
 
-  #   secondDate = b.a(class: 'ui-state-default')
+  #   secondDate = @b.a(class: 'ui-state-default')
   #   secondDate.click
 
-  #   searchBtn = b.input(id: 'btnSearch')
+  #   searchBtn = @b.input(id: 'btnSearch')
   #   searchBtn.click
 
-  #   resultCount = b.b(id: 'resultCount')
+  #   resultCount = @b.b(id: 'resultCount')
 
   #   resultCount.text.to_i.must_be :>, 1
   # end
 
-  it 'no result' do
-
+  it 'has no result' do
     # set language to Chinese
-    dwnLang = b.span(id: 'dwnLang')
-    dwnLang.click
-    chinese = b.li(text: '繁體中文')
-    chinese.click
+    @b.span(id: 'dwnLang').click
+    @b.li(text: '繁體中文').click
 
-    startDate = b.input(id: 'StartDate')
-    startDate.click
+    @b.input(id: 'StartDate').click
+    @b.a(class: 'ui-datepicker-next ui-corner-all').click
+    @b.a(class: 'ui-state-default').click
 
-    nextMonthBtn = b.a(class: 'ui-datepicker-next ui-corner-all')
-    nextMonthBtn.click
+    @b.input(id: 'EndDate').click
+    @b.a(class: 'ui-datepicker-next ui-corner-all').click
+    @b.a(class: 'ui-datepicker-next ui-corner-all').click
+    @b.a(class: 'ui-state-default').click
 
-    firstDate = b.a(class: 'ui-state-default')
-    firstDate.click
+    # change destination
+    @b.span(class: 'sel-tree fixed-w').click
+    @b.a(rel:'EUR').click
+    @b.a(rel:'LON').click
 
-    endDate = b.input(id: 'EndDate')
-    endDate.click
+    @b.span(id:'selBudgetAmount').click
+    @b.li(text:'最高 10,000').click
+    sleep 1   # wait for search button to be uncovered
 
-    nextMonthBtn = b.a(class: 'ui-datepicker-next ui-corner-all')
-    nextMonthBtn.click
-    nextMonthBtn = b.a(class: 'ui-datepicker-next ui-corner-all')
-    nextMonthBtn.click
+    @b.input(id: 'btnSearch').click
+    sleep 2
 
-    secondDate = b.a(class: 'ui-state-default')
-    secondDate.click
-
-    #change dest
-    arrCity = b.span(class: 'sel-tree fixed-w')
-    arrCity.click
-    eur = b.a(rel:'EUR')
-    eur.click
-    lon = b.a(rel:'LON')
-    lon.click
-
-    #change budget
-    budgetAmount = b.span(id:'selBudgetAmount')
-    budgetAmount.click
-    selectBudget = b.li(text:'最高 10,000')
-    selectBudget.click
-
-    searchBtn = b.input(id: 'btnSearch')
-    searchBtn.click
-
-    b.b(id: 'resultCount').text.empty?.must_be :==, true
+    alert_text = nil
+    begin
+      alert_text = @b.alert.text
+      @b.alert.ok
+    rescue Watir::Exception::UnknownObjectException
+    end
+    alert_text.must_match 'No Results'
   end
 end
 
 # describe 'submission works' do
 #   before do
-#     b.goto 'http://farego.com.tw'
+#     @b.goto 'http://farego.com.tw'
 #   end
-
-#   # it 'says thank you' do
-#   #   b.goto 'bit.ly/watir-webdriver-demo'
-#   #   b.text_field(id: 'entry_0').set 'Your Name'
-#   #   b.select_list(id: 'entry_1').select 'Ruby'
-#   #   b.button(name: 'submit').click
-#   #   b.text.must_include 'Thank you'
-#   # end
+#
+#   it 'says thank you' do
+#     @b.goto 'bit.ly/watir-webdriver-demo'
+#     @b.text_field(id: 'entry_0').set 'Your Name'
+#     @b.select_list(id: 'entry_1').select 'Ruby'
+#     @b.button(name: 'submit').click
+#     @b.text.must_include 'Thank you'
+#   end
 # end
