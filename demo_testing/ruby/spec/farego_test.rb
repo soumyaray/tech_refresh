@@ -1,9 +1,13 @@
 require 'watir-webdriver'
 require 'minitest/autorun'
 require 'minitest/rg'
+# require 'selenium/server'
+#
+# jar_path = File.join(Dir.pwd, 'selenium-server-standalone-2.42.2.jar')
+# server = Selenium::Server.new(jar_path, :background => true)
+# server.start
 
-
-b = Watir::Browser.new
+b = Watir::Browser.new :chrome
 
 describe 'the page loads' do
   before do
