@@ -57,7 +57,7 @@ describe 'the page loads' do
 
   #   resultCount = b.b(id: 'resultCount')
 
-  #   resultCount.text.to_i.must_be :>, 1 
+  #   resultCount.text.to_i.must_be :>, 1
   # end
 
   it 'no result' do
@@ -94,13 +94,11 @@ describe 'the page loads' do
     budgetAmount.click
     selectBudget = b.li(text:'最高 10,000')
     selectBudget.click
-    
+
     searchBtn = b.input(id: 'btnSearch')
     searchBtn.click
 
-    resultCount = b.b(id: 'resultCount')
-
-    resultCount.text.to_i.must_be :>, 1 
+    puts "check: " + b.b(id: 'resultCount').exists?.to_s
   end
 end
 
