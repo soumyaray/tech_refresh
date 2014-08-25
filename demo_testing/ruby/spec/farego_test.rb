@@ -92,13 +92,13 @@ describe 'the page loads' do
     #change budget
     budgetAmount = b.span(id:'selBudgetAmount')
     budgetAmount.click
-    selectBudget = b.li(text:'最高 10,000')
+    selectBudget = b.li(text:'Up to 10,000')
     selectBudget.click
 
     searchBtn = b.input(id: 'btnSearch')
     searchBtn.click
 
-    puts "check: " + b.b(id: 'resultCount').exists?.to_s
+    b.b(id: 'resultCount').text.empty?.must_be :==, true
   end
 end
 
