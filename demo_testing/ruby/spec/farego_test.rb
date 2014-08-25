@@ -55,14 +55,9 @@ describe 'the page loads' do
     searchBtn = b.input(id: 'btnSearch')
     searchBtn.click
 
-    resultCount = b.b(id: 'resultCount');
+    resultCount = b.b(id: 'resultCount')
 
-    if (resultCount.text.to_i > 1)
-    	puts resultCount.text
-    else
-    	puts 'Wrong!'
-    end
-
+    resultCount.text.to_i.must_be :>, 1 
   end
 end
 
