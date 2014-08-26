@@ -94,7 +94,8 @@ describe 'the page loads' do
     begin
       alert_text = @b.alert.text
       @b.alert.ok
-    rescue Watir::Exception::UnknownObjectException
+    rescue Watir::Exception::UnknownObjectException => e
+      puts e
     end
     alert_text.must_match 'No Results'
   end
