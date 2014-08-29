@@ -8,61 +8,61 @@ describe 'the page loads' do
     @b.goto 'http://farego.com.tw'
   end
 
-  # after do
-  #   @b.close
-  # end
+  after do
+    @b.close
+  end
 
-  # it 'has the correct fields' do
-  #   # set language to Chinese
-  #   dwnLang = @b.span(id: 'dwnLang')
-  #   dwnLang.click
-  #
-  #   chinese = @b.li(text: '繁體中文')
-  #   chinese.click
-  # 	depCity = @b.span(id: 'selDepartureCity')
-  #   depCity.text.must_equal '台北'
-  # 	arrCity = @b.span(class: 'sel-tree fixed-w')
-  #   arrCity.text.must_equal '不限定'
-  #   searchBtn = @b.input(id: 'btnSearch')
-  #   searchBtn.value.must_equal '搜 尋'
-  #   selday = @b.span(id: 'selStay')
-  #   selday.text.must_equal '2'
-  # end
+  it 'has the correct fields' do
+    # set language to Chinese
+    dwnLang = @b.span(id: 'dwnLang')
+    dwnLang.click
 
-  # it 'has quick search results' do
-  #   selday = @b.span(id: 'selStay')
-  #   selday.click
-  #   day6 = @b.li(text:'6')
-  #   day6.click
-  #   selday.text.must_equal '6'
+    chinese = @b.li(text: '繁體中文')
+    chinese.click
+  	depCity = @b.span(id: 'selDepartureCity')
+    depCity.text.must_equal '台北'
+  	arrCity = @b.span(class: 'sel-tree fixed-w')
+    arrCity.text.must_equal '不限定'
+    searchBtn = @b.input(id: 'btnSearch')
+    searchBtn.value.must_equal '搜 尋'
+    selday = @b.span(id: 'selStay')
+    selday.text.must_equal '2'
+  end
 
-  #   startDate = @b.input(id: 'StartDate')
-  #   startDate.click
+  it 'has quick search results' do
+    selday = @b.span(id: 'selStay')
+    selday.click
+    day6 = @b.li(text:'6')
+    day6.click
+    selday.text.must_equal '6'
 
-  #   nextMonthBtn = @b.a(class: 'ui-datepicker-next ui-corner-all')
-  #   nextMonthBtn.click
+    startDate = @b.input(id: 'StartDate')
+    startDate.click
 
-  #   firstDate = @b.a(class: 'ui-state-default')
-  #   firstDate.click
+    nextMonthBtn = @b.a(class: 'ui-datepicker-next ui-corner-all')
+    nextMonthBtn.click
 
-  #   endDate = @b.input(id: 'EndDate')
-  #   endDate.click
+    firstDate = @b.a(class: 'ui-state-default')
+    firstDate.click
 
-  #   nextMonthBtn = @b.a(class: 'ui-datepicker-next ui-corner-all')
-  #   nextMonthBtn.click
-  #   nextMonthBtn = @b.a(class: 'ui-datepicker-next ui-corner-all')
-  #   nextMonthBtn.click
+    endDate = @b.input(id: 'EndDate')
+    endDate.click
 
-  #   secondDate = @b.a(class: 'ui-state-default')
-  #   secondDate.click
+    nextMonthBtn = @b.a(class: 'ui-datepicker-next ui-corner-all')
+    nextMonthBtn.click
+    nextMonthBtn = @b.a(class: 'ui-datepicker-next ui-corner-all')
+    nextMonthBtn.click
 
-  #   searchBtn = @b.input(id: 'btnSearch')
-  #   searchBtn.click
+    secondDate = @b.a(class: 'ui-state-default')
+    secondDate.click
 
-  #   resultCount = @b.b(id: 'resultCount')
+    searchBtn = @b.input(id: 'btnSearch')
+    searchBtn.click
 
-  #   resultCount.text.to_i.must_be :>, 1
-  # end
+    resultCount = @b.b(id: 'resultCount')
+
+    resultCount.text.to_i.must_be :>, 1
+  end
 
   it 'has no result' do
     # set language to Chinese
